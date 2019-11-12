@@ -39,14 +39,18 @@ public class ImageController {
 					try {
 						String extension=FilenameUtils.getExtension(file.getName());
 						System.out.println("Extension: "+extension);
+						
 						FileInputStream fileInputStram =new FileInputStream(file);
 						System.out.println("fileInputStram: "+fileInputStram);
+						
 						byte[] bytes=new byte[(int)file.length()];
 						System.out.println("bytes: "+bytes);
+						
 						fileInputStram.read();
 						encodeBased=Base64.getEncoder().encodeToString(bytes);
 						images.add("data:image/"+extension+"base64,"+encodeBased);
 						fileInputStram.close();
+						
 					} catch (Exception e) {
 						// TODO: handle exception
 						System.out.println("Exception: "+e);
