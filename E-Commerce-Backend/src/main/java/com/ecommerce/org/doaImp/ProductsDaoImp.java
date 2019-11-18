@@ -22,25 +22,33 @@ import com.ecommerce.org.dao.ProductsDao;
 import com.ecommerce.org.dto.Products;
 
 @Service
-@Transactional
 public class ProductsDaoImp {
 
 	@Autowired
 	private ProductsDao productsDao;
 	
-	///----------------------***********-------------------------
+	///----------------------*****Pagination******-------------------------
 
-//	public Page<Products> listActiveProductsByCategoryPage( int page, int size, int categoryId){
-//		//productsDao.findByCategoryIdPages(categoryId);
-//		Pageable pageable = PageRequest.of(page, size);
-//		return productsDao.findByCategoryIdPages(categoryId,pageable);
-//	}
-//	
+	public Page<Products> listActiveProductsByCategoryPage(Pageable pageable, int id){
+		//productsDao.findByCategoryIdPages(categoryId);
+		Page<Products> page = productsDao.findByCategoryid(id, pageable);
+		return page;
+	}
+	
+	public Page<Products> listActiveProducts(Pageable pageable, int active){
+		//productsDao.findByCategoryIdPages(categoryId);
+		Page<Products> page = productsDao.findByActive(active, pageable);
+		return page;
+	}
+	
 	///-----------------------------**---------------------------------------------------
+	
 	public List<Products> getAllProducts(){
 		return productsDao.findAll();
 	}
 	
+	
+
 	public Products getProductsById(Long id) {
 		return productsDao.findById(id).get();
 	}
@@ -61,12 +69,13 @@ public class ProductsDaoImp {
 		return ResponseEntity.created(uri).build();
 	}
 	
-	public List<Products> listActiveProducts(boolean active){
-		return productsDao.findByActive(active);
-	}
+
+//	public List<Products> listActiveProducts(boolean active){
+//		return productsDao.findByActive(active);
+//	}
 	
 	public List<Products> listActiveProductsByCategory(int categoryId){
-		return productsDao.findByCategoryId(categoryId);
+		return productsDao.findByCategoryid(categoryId);
 	}
 	
 

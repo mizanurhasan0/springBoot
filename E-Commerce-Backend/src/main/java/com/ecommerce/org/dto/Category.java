@@ -10,16 +10,20 @@ import javax.persistence.Id;
 public class Category {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String name;
 	private String description;
-	@Column(name = "image_url")
-	private String imageUrl;
-	private boolean active=true;
-	
-	
-	
+	@Column(name = "image")
+	private String imagei;
+	private int active;
+	public Category(String name, String description, String image, int active) {
+		super();
+		this.name = name;
+		this.description = description;
+		this.imagei = image;
+		this.active = active;
+	}
 	public Category() {
 		super();
 	}
@@ -41,32 +45,25 @@ public class Category {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public String getImageUrl() {
-		return imageUrl;
+	public String getImage() {
+		return imagei;
 	}
-	public void setImageUrl(String imageUrl) {
-		this.imageUrl = imageUrl;
+	public void setImage(String image) {
+		this.imagei = image;
 	}
-	public boolean isActive() {
+	public int getActive() {
 		return active;
 	}
-	public void setActive(boolean active) {
-		this.active = active;
-	}
-	public Category(int id
-			, String name, String description, String imageUrl, boolean active) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.description = description;
-		this.imageUrl = imageUrl;
+	public void setActive(int active) {
 		this.active = active;
 	}
 	@Override
 	public String toString() {
-		return "Category [id=" + id + ", name=" + name + ", description=" + description + ", imageUrl=" + imageUrl
+		return "Category [id=" + id + ", name=" + name + ", description=" + description + ", image=" + imagei
 				+ ", active=" + active + "]";
 	}
+	
+	
 	
 	
 }

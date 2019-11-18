@@ -16,18 +16,18 @@ import com.ecommerce.org.dto.Products;
 @RestController
 public class PageController {
 
-	@Autowired
-	private Testpagination studentService;
+//	@Autowired
+//	private Testpagination studentService;
+//
+//    public PageController(Testpagination studentService) {
+//        this.studentService = studentService;
+//    }
 
-    public PageController(Testpagination studentService) {
-        this.studentService = studentService;
-    }
-
- @GetMapping("/students/classroom/{id}")
-    public ResponseEntity<Page<Products>> getAllStudentsBasedOnClassroom( Pageable pageable,@PathVariable int id)
-        throws URISyntaxException {           
-        Page<Products> page = studentService.findByCategoryId(id, pageable);
-        //HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/students/classroom");
-        return new ResponseEntity<Page<Products>>(page, HttpStatus.OK);
-    }
+// @GetMapping("/students/classroom/{id}")
+//    public ResponseEntity<Page<Products>> getAllStudentsBasedOnClassroom( Pageable pageable,@PathVariable int id)
+//        throws URISyntaxException {           
+//        Page<Products> page = studentService.findByCategoryId(id, pageable);
+//        //HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/students/classroom");
+//        return new ResponseEntity<Page<Products>>(page, HttpStatus.OK);
+//    }
 }

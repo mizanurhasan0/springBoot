@@ -12,43 +12,47 @@ import javax.persistence.Id;
 public class Products {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String code;
+	
 	private String name;
 	private String brand;
+	@Column(name = "description")
 	private String description;
-	private int unitPrice;
+	private int unitprice;
 	private int quantity;
-	private boolean active;
-	private int categoryId;
-	private int supplierId;
+	private int active;
+	@Column(name = "categoryid")
+	private int categoryid;
+	private int supplierid;
 	private int purchases;
 	private int views;
 	
 	
-	public Products() {
-		this.code="PRD"+UUID.randomUUID().toString().substring(26).toUpperCase();
-	}
-
-	
-
-	public Products(String code, String name, String brand, String description, int unitPrice, int quantity,
-			boolean active, int categoryId, int supplierId, int purchases, int views) {
+	public Products(String code, String name, String brand, String description, int unitprice, int quantity, int active,
+			int categoryid, int supplierid, int purchases, int views) {
 		super();
 		this.code = code;
 		this.name = name;
 		this.brand = brand;
 		this.description = description;
-		this.unitPrice = unitPrice;
+		this.unitprice = unitprice;
 		this.quantity = quantity;
 		this.active = active;
-		this.categoryId = categoryId;
-		this.supplierId = supplierId;
+		this.categoryid = categoryid;
+		this.supplierid = supplierid;
 		this.purchases = purchases;
 		this.views = views;
 	}
 
+
+	public Products() {
+		this.code="PRD"+UUID.randomUUID().toString().substring(26).toUpperCase();
+		this.views=0;
+		this.active=0;
+		this.supplierid=1;
+	}
 
 
 	public Long getId() {
@@ -101,13 +105,13 @@ public class Products {
 	}
 
 
-	public double getUnitPrice() {
-		return unitPrice;
+	public int getUnitprice() {
+		return unitprice;
 	}
 
 
-	public void setUnitPrice(int unitPrice) {
-		this.unitPrice = unitPrice;
+	public void setUnitprice(int unitprice) {
+		this.unitprice = unitprice;
 	}
 
 
@@ -121,33 +125,33 @@ public class Products {
 	}
 
 
-	public boolean isActive() {
+	public int getActive() {
 		return active;
 	}
 
 
-	public void setActive(boolean active) {
+	public void setActive(int active) {
 		this.active = active;
 	}
 
 
-	public int getCategoryId() {
-		return categoryId;
+	public int getCategoryid() {
+		return categoryid;
 	}
 
 
-	public void setCategoryId(int categoryId) {
-		this.categoryId = categoryId;
+	public void setCategoryid(int categoryid) {
+		this.categoryid = categoryid;
 	}
 
 
-	public int getSupplierId() {
-		return supplierId;
+	public int getSupplierid() {
+		return supplierid;
 	}
 
 
-	public void setSupplierId(int supplierId) {
-		this.supplierId = supplierId;
+	public void setSupplierid(int supplierid) {
+		this.supplierid = supplierid;
 	}
 
 
@@ -174,10 +178,12 @@ public class Products {
 	@Override
 	public String toString() {
 		return "Products [id=" + id + ", code=" + code + ", name=" + name + ", brand=" + brand + ", description="
-				+ description + ", unitPrice=" + unitPrice + ", quantity=" + quantity + ", active=" + active
-				+ ", categoryId=" + categoryId + ", supplierId=" + supplierId + ", purchases=" + purchases + ", views="
+				+ description + ", unitprice=" + unitprice + ", quantity=" + quantity + ", active=" + active
+				+ ", categoryid=" + categoryid + ", supplierid=" + supplierid + ", purchases=" + purchases + ", views="
 				+ views + "]";
 	}
+
+
 
 	
 	

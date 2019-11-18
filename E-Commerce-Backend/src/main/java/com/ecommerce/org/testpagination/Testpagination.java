@@ -8,5 +8,5 @@ import com.ecommerce.org.dto.Products;
 
 public interface Testpagination extends JpaRepository<Products, Long> {
 
-	Page<Products> findByCategoryId(int id,Pageable pageable);
+//	Page<Products> findByCategoryId(int id,Pageable pageable);
 }
