@@ -25,12 +25,15 @@ public class MultiFileUploadController {
 			
 			try {
 				Files.write(fileNameAndPath, file.getBytes());
+				//return "Successfully uploaded";
 			} catch (Exception e) {
 				// TODO: handle exception
 				e.printStackTrace();
+				//return "error uploaded"+e;
 			}
 			
 		}
 		return "Successfully uploaded";
+		
 	}
 }
