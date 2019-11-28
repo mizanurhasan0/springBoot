@@ -17,7 +17,7 @@ import com.blog.org.jwt.services.JwtUserDetailsService;
 import org.springframework.security.authentication.AuthenticationManager;
 
 @RestController
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:4200")
 public class AuthController {
 
     @Autowired
@@ -41,8 +41,9 @@ public class AuthController {
                 .loadUserByUsername(authenticationRequest.getUsername());
 
         final String token = jwtToken.generateToken(userDetails);
+        final String username = authenticationRequest.getUsername();
 
-        return ResponseEntity.ok(new JwtResponse(token));
+        return ResponseEntity.ok(new JwtResponse(token,username));
 
     }
 

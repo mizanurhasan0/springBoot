@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 public class BlogController {
 
     final private BlogRepository blogRepository;
@@ -35,7 +36,7 @@ public class BlogController {
         return blogRepository.findByTitleContainingOrContentContaining(searchTerm, searchTerm);
     }
 
-    @PostMapping("/blog")
+    @PostMapping("/addblog1")
     public Blog create(@RequestBody Map<String, String> body){
         String title = body.get("title");
         String content = body.get("content");
