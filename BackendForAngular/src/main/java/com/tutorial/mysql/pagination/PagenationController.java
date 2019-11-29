@@ -22,7 +22,7 @@ public class PagenationController {
 	public Page<Todos> allTodos(@RequestParam(defaultValue = "0") int page, @RequestParam("size") int size){
 //		return todoRepository.findAll(new PageRequest(page, 4));
 		
-	//	if(page>8) {
+//	if(page>8) {
 			return todoRepository.findAll(PageRequest.of(page, size));
 //		}else {
 //			return todoRepository.findAll(PageRequest.of(2, size));

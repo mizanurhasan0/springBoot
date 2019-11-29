@@ -1,4 +1,4 @@
-package com.blog.org.jwt.config;
+package com.blog.jwt.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -16,9 +16,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import com.blog.org.jwt.JwtAuthenticationEntryPoint;
-import com.blog.org.jwt.JwtRequestFilter;
-import com.blog.org.jwt.services.JwtUserDetailsService;
+import com.blog.jwt.requests.JwtRequestFilter;
+import com.blog.jwt.responsetoken.JwtAuthenticationEntryPoint;
+import com.blog.jwt.services.JwtUserDetailsService;
 
 @Configuration
 @EnableWebSecurity
