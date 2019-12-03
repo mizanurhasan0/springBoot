@@ -23,10 +23,7 @@ public class BlogController {
 		this.blogRepository = blogRepository;
 	}
 
-//    @GetMapping("/blog")
-//    public List<Blog> index(){
-//        return blogRepository.findAll();
-//    }
+
 //	@GetMapping("/blog")
 //	public List<Blog> index() {
 //		return blogRepository.findByActive();
@@ -38,11 +35,25 @@ public class BlogController {
 		Page<Blog> page = blogRepository.findByActive(pageable);
 		return new ResponseEntity<Page<Blog>>(page, HttpStatus.OK);
 	}
-
-	@GetMapping(path = "/blog/profile/{userid}")
-	public ResponseEntity<Page<Blog>> getAllBlogSelfByActivation(@PathVariable int userid,Pageable pageable)
+	
+	@GetMapping(path = "/blog/self/{userid}")
+	public ResponseEntity<Page<Blog>> getAllSelfBlog(@PathVariable String userid,Pageable pageable)
 			throws URISyntaxException {
-		Page<Blog> page = blogRepository.singleUserPosts(userid,pageable);
+		Page<Blog> page = blogRepository.findByUserid(userid,pageable);
+		return new ResponseEntity<Page<Blog>>(page, HttpStatus.OK);
+	}
+	
+//	@GetMapping(path = "/joinblog")
+//	public ResponseEntity<Page<Blog>> getAllBlogByActivationJoin(Pageable pageable)
+//			throws URISyntaxException {
+//		Page<Blog> page = blogRepository.findByUserid(pageable);
+//		return new ResponseEntity<Page<Blog>>(page, HttpStatus.OK);
+//	}
+
+	@GetMapping(path = "/blog/profile/{useremail}/a")
+	public ResponseEntity<Page<Blog>> getAllBlogSelfByActivation(@PathVariable String useremail,Pageable pageable)
+			throws URISyntaxException {
+		Page<Blog> page = blogRepository.singleUserPosts(useremail,pageable);
 		return new ResponseEntity<Page<Blog>>(page, HttpStatus.OK);
 	}
 	
@@ -52,6 +63,7 @@ public class BlogController {
 		return blogRepository.findById(blogId).orElse(new Blog());
 	}
 
+	
 	@PostMapping("/blog/search")
 	public List<Blog> search(@RequestBody Map<String, String> body) {
 		String searchTerm = body.get("text");
@@ -63,7 +75,8 @@ public class BlogController {
 		String title = body.get("title");
 		String content = body.get("content");
 		String userId = body.get("userid");
-		return blogRepository.save(new Blog(title, content, userId));
+		String useremail=body.get("useremail");
+		return blogRepository.save(new Blog(title, content, useremail,userId));
 	}
 
 	@PutMapping("/blog/{id}")

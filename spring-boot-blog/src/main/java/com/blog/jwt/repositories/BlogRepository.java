@@ -21,6 +21,8 @@ public interface BlogRepository extends JpaRepository<Blog,Integer> {
     // custom query to search to blog post by title or content
     List<Blog> findByTitleContainingOrContentContaining(String text, String textAgain);
 
+    
+    
     @Query(value = "SELECT * FROM blog b WHERE b.active=true order by b.id DESC",nativeQuery = true)
     List<Blog> findByActive();
     
@@ -31,8 +33,14 @@ public interface BlogRepository extends JpaRepository<Blog,Integer> {
     @Query(value = "SELECT * FROM blog b WHERE b.active=true order by b.id DESC",nativeQuery = true)
     Page<Blog> findByActive(Pageable pageable);
     
-    @Query(value = "SELECT * FROM blog WHERE active=true and userid=?1 order by id DESC",nativeQuery = true)
-    Page<Blog> singleUserPosts(int userId,Pageable pageable);
+    @Query(value = "SELECT * FROM blog  WHERE active=true and userid=?1 order by id DESC",nativeQuery = true)
+    Page<Blog> findByUserid(String userid,Pageable pageable);
+    
+    
+    @Query(value = "SELECT * FROM blog WHERE active=true and useremail=1? order by id DESC",nativeQuery = true)
+    Page<Blog> singleUserPosts(String useremail,Pageable pageable);
+    
+    //Page<Blog> findByUserid(String userid,Pageable pageable);
     
 }
 

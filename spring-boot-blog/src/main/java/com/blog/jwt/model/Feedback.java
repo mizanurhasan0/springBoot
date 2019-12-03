@@ -27,7 +27,11 @@ public class Feedback {
 		this.message = message;
 		this.email = email;
 	}
-
+	public Feedback(String message, String email) {
+		this.id = id;
+		this.message = message;
+		this.email = email;
+	}
 
 	public Long getId() {
 		return id;

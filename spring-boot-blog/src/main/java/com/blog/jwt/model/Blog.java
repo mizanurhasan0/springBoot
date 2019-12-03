@@ -13,32 +13,43 @@ public class Blog {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
 
     private String title;
     @Column(columnDefinition="TEXT")
     private String content;
     private Date created=new Date();
-    private String userid;
+    private String useremail;
     private boolean active=true;
+    private String userid;
 
     public Blog() {  }
 
-    public Blog(String title, String content,String userid ) {
+    public Blog(String title, String content,String useremail,String userid ) {
         this.setTitle(title);
         this.setContent(content);
+        this.setUseremail(useremail);
         this.setUserid(userid);
     }
 
-    public Blog(Long id, String title, String content,String userId,boolean active) {
+    public Blog(int id, String title, String content,String useremail,boolean active,String userid) {
         this.setId(id);
         this.setTitle(title);
         this.setContent(content);
-        this.setUserid(userId);
+        this.setUseremail(useremail);
         this.setActive(active);
+        this.userid=userid;
     }
 
-    public boolean isActive() {
+    public String getUserid() {
+		return userid;
+	}
+
+	public void setUserid(String userid) {
+		this.userid = userid;
+	}
+
+	public boolean isActive() {
 		return active;
 	}
 
@@ -62,11 +73,11 @@ public class Blog {
         this.content = content;
     }
 
-	public Long getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -78,19 +89,21 @@ public class Blog {
 		this.created = created;
 	}
 
-	public String getUserid() {
-		return userid;
+	public String getUseremail() {
+		return useremail;
 	}
 
-	public void setUserid(String userid) {
-		this.userid = userid;
+	public void setUseremail(String useremail) {
+		this.useremail = useremail;
 	}
 
 	@Override
 	public String toString() {
-		return "Blog [id=" + id + ", title=" + title + ", content=" + content + ", created=" + created + ", userid="
-				+ userid + "]";
+		return "Blog [id=" + id + ", title=" + title + ", content=" + content + ", created=" + created + ", useremail="
+				+ useremail + ", active=" + active + "]";
 	}
+
+
 
    
 
