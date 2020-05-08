@@ -15,5 +15,4 @@ public class SpringBootImagesApplication {
 		SpringApplication.run(SpringBootImagesApplication.class, args);
 	}
 
-
 }
